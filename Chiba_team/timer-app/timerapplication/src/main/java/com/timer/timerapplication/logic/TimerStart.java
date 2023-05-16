@@ -62,9 +62,9 @@ public class TimerStart {
 		}
 		
 		// NTPサーバより現在時刻の取得
-		LocalDateTime nowTime;
+		LocalDateTime nowJSTTime;
 		try {
-			nowTime = getCurrentJstTime();
+			nowJSTTime = getCurrentJstTime();
 		} catch(Exception e) {
 			e.printStackTrace();
 			return ntpExceptionMessage;
@@ -72,7 +72,7 @@ public class TimerStart {
 		
 		// 指定時間と比較し、待機時間を算出
 		// 時刻が今日の時刻を超えている場合、次の日の時刻を設定する
-		long sleepTime = calculateSleepTime(setTime, nowTime);
+		long sleepTime = calculateSleepTime(setTime, nowJSTTime, timeZone);
 		
 		// タイマー開始
 		TimerThread timerThread = new TimerThread();
@@ -112,7 +112,7 @@ public class TimerStart {
 	}
 
 	/**
-	 * 現在時刻取得処理
+	 * JST現在時刻取得処理
 	 * @param timeZone
 	 * @return
 	 * @throws Exception
@@ -121,9 +121,8 @@ public class TimerStart {
 		System.out.println("現在時刻取得処理開始");
 		NTPUDPClient client = new NTPUDPClient();
 		try {
-			// NTP v4を使用
-			// ※NTP v3の方が、NtpV3Packetクラスが利用できるため使いやすそう…？
-			client.setVersion(4);
+			// NTP v3(RFC1305)を使用
+			client.setVersion(3);
 			// NTPサーバに接続し、時刻を取得
 			client.open();
 			InetAddress host = InetAddress.getByName(NTP_SERVER);
@@ -146,24 +145,30 @@ public class TimerStart {
 	
 	/**
 	 * 待機時間算出処理
+	 * （待機時間の算出は、JST基準で行う。
+	 * 指定時刻のタイムゾーンがUTCの場合は、JSTに変換して算出する。）
 	 * @param setTimeString
 	 * @param nowTime
+	 * @param timeZone
 	 * @return
 	 */
-	private long calculateSleepTime(String setTimeString, LocalDateTime nowTime) {
+	private long calculateSleepTime(String setTimeString, LocalDateTime nowJSTTime, String timeZone) {
 		System.out.println("通知待機時間算出処理開始");
 		// 指定時刻を本日の日時に変換
 		String[] setTimeValue = setTimeString.split(":");
-		LocalDateTime setTime= LocalDateTime.of(nowTime.getYear(), nowTime.getMonth(), nowTime.getDayOfMonth(),
+		LocalDateTime setTime= LocalDateTime.of(nowJSTTime.getYear(), nowJSTTime.getMonth(), nowJSTTime.getDayOfMonth(),
 				Integer.parseInt(setTimeValue[0]), Integer.parseInt(setTimeValue[1]), 0, 0);
+		if(timeZone.equals("UTC")) {
+			setTime.plusHours(9);
+		}
 		
 		// 指定時刻が現在時刻より前になっている場合、指定時刻を次の日とする
-		if(setTime.isBefore(nowTime)) {
+		if(setTime.isBefore(nowJSTTime)) {
 			setTime = setTime.plusDays(1);
 		}
 		
 		// 待機時間を算出
-		Duration sleepTime = Duration.between(nowTime, setTime);
+		Duration sleepTime = Duration.between(nowJSTTime, setTime);
 		System.out.println("通知待機時間算出処理終了");
 		return sleepTime.toMillis();
 	}
