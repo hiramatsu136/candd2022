@@ -1,0 +1,8 @@
+input[type="button"].start {
+    background-color: #6B8E23;
+    color: white;
+}
+input[type="button"].stop {
+    background-color: red;
+    color: white;
+}

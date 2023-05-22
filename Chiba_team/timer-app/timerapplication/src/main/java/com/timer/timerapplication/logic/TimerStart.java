@@ -13,10 +13,12 @@ import java.time.temporal.ChronoUnit;
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.TimeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * タイマー開始クラス
  */
+@Service
 public class TimerStart {
 	
 	/**

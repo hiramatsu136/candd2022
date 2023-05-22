@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{common/head :: head_fragment(title = 'タイマーアプリ', scripts = ~{::script}, links = ~{::link})}"></head>
+
+<body>
+    <div class="container">
+        <h1>タイマーアプリ</h1>
+        <form method="post" action="/timer/start" id="timer_form">
+            <div>
+                <input type="time" id="set_time" value="12:00" required>
+            </div>
+            <div>
+                <!-- input timezone -->
+                <input type="radio" name="timezone" value="JST" checked>
+                <input type="radio" name="timezone" value="UTC">
+            </div>
+            <div>
+                <input type="button" id="start_btn" class="start" value="開始" onclick="startBtnClick()">
+                <input type="button" id="start_btn" class="stop" value="停止" onclick="stopBtnClick()">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
