@@ -19,8 +19,8 @@ public class TimerThread extends Thread{
 			Thread.sleep(sleepTime);
 			System.out.println("待機を終了します。");
 		} catch(InterruptedException e) {
-			System.out.println("TimerThreadクラスでInterruptedExceptionを検知しました。");
-			System.out.println("処理を終了します。");
+			System.out.println("新たな開始処理が実行されました。");
+			System.out.println("現在実行中のタイマー処理を終了します。");
 		}
 	}
 }

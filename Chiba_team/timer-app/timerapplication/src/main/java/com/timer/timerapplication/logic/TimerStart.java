@@ -83,10 +83,9 @@ public class TimerStart {
 		timerThread.start();
 		try {
 			timerThread.join();
-		} catch(InterruptedException e) {
-			// ※interruptは、TimerThread側で処理されるはずなので、
-			// 　ここで検知された場合は何らかのエラーが発生したと考えられる
-			System.out.println("setTimerメソッドでInterruptedExceptionを検知しました。");
+		} catch(Exception e) {
+			// ※ここで検知された場合はアプリが強制終了された場合と考えられる
+			System.out.println("アプリを強制終了します。");
 			return exceptionMessage;
 		}
 		
