@@ -7,17 +7,25 @@
     <div class="container">
         <h1>タイマーアプリ</h1>
         <form method="post" action="/timer/start" id="timer_form">
-            <div>
+            <div class="timer_tr_1">
                 <input type="time" id="set_time" value="12:00" required>
             </div>
-            <div>
+            <div class="timer_tr">
                 <!-- input timezone -->
-                <input type="radio" name="timezone" value="JST" checked>
-                <input type="radio" name="timezone" value="UTC">
+                <div class="timer_td">
+                    <input type="radio" name="timezone" value="JST" checked>JST
+                </div>
+                <div class="timer_td">
+                    <input type="radio" name="timezone" value="UTC">UTC
+                </div>
             </div>
-            <div>
-                <input type="button" id="start_btn" class="start" value="開始" onclick="startBtnClick()">
-                <input type="button" id="start_btn" class="stop" value="停止" onclick="stopBtnClick()">
+            <div class="timer_tr">
+                <div class="timer_td">
+                    <input type="button" id="start_btn" class="start" value="開始" onclick="startBtnClick()">
+                </div>
+                <div class="timer_td">
+                    <input type="button" id="start_btn" class="stop" value="停止" onclick="stopBtnClick()">
+                </div>
             </div>
         </form>
     </div>

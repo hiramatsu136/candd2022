@@ -6,3 +6,23 @@ input[type="button"].stop {
     background-color: red;
     color: white;
 }
+.container{
+    width: 500px;
+    height: 250px;
+    text-align: center;
+}
+.timer_tr {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.timer_td{
+    margin: 0;
+}
+.timer_tr_1 {
+    margin: 20px;
+    text-align: center;
+}
+input[type="time"]{
+    width: 200px;
+}
