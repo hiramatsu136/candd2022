@@ -10,6 +10,7 @@ input[type="button"].stop {
     width: 500px;
     height: 250px;
     text-align: center;
+    border: solid thin black;
 }
 .timer_tr {
     margin: 20px;
