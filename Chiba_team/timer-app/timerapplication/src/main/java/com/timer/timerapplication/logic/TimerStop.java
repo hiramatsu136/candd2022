@@ -1,5 +1,8 @@
 package com.timer.timerapplication.logic;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 //タイマー終了クラス
 @Service
 public class TimerStop {
