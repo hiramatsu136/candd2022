@@ -19,8 +19,6 @@ public class TimerStop {
 	 * 終了ボタン押下により実行されるメソッド。
 	 * 動作中タイマーの中断処理を行う。
 	 * 
-	 * @param setTime 指定時刻(String型)
-	 * @param timeZone タイムゾーン設定(JST/UTC)
 	 * @return 実行結果メッセージ
 	 */
     public String resetTimer(){
