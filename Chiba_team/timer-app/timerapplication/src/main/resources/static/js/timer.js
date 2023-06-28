@@ -1,7 +1,7 @@
 function startBtnClick() {
   var data = {
     time: $("#set_time").val(),
-    timeZone: $('input[name="timezone"]').val(),
+    timeZone: $('input:radio[name="timezone"]:checked').val(),
   };
   $.ajax({
     url: $("#timer_form").attr("action"), // リクエストを送信するURLを指定（action属性のurlを抽出）
