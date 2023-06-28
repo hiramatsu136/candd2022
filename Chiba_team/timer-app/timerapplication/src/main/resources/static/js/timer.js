@@ -25,7 +25,7 @@ function stopBtnClick() {
     contentType: "application/json", // リクエストの Content-Type
   })
     .done(function (response) {
-      alert("停止成功"); //TODO : 何もしない
+      alert(response);
     })
     .fail(function () {
       alert("通信エラー");

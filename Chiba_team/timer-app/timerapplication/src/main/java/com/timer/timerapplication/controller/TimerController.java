@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.timer.timerapplication.dto.TimerStartDto;
 import com.timer.timerapplication.logic.TimerStart;
+import com.timer.timerapplication.logic.TimerStop;
 
 @Controller
 public class TimerController {
 
     @Autowired
     private TimerStart timerStart;
+
+    @Autowired
+    private TimerStop timerStop;
 
     /**
      * タイマーアプリ画面を表示
@@ -47,7 +51,6 @@ public class TimerController {
      */
     @PostMapping(value = "/timer/stop")
     public @ResponseBody String stopTimer() {
-        // TODO:ロジック呼び出し
-        return "";
+        return timerStop.resetTimer();
     }
 }
