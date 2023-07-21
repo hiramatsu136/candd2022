@@ -160,7 +160,7 @@ public class TimerStart {
 		LocalDateTime setTime= LocalDateTime.of(nowJSTTime.getYear(), nowJSTTime.getMonth(), nowJSTTime.getDayOfMonth(),
 				Integer.parseInt(setTimeValue[0]), Integer.parseInt(setTimeValue[1]), 0, 0);
 		if(timeZone.equals("UTC")) {
-			setTime.plusHours(9);
+			setTime = setTime.plusHours(9);
 		}
 		
 		// 指定時刻が現在時刻より前になっている場合、指定時刻を次の日とする
